@@ -47,14 +47,9 @@ class HomeScreen extends StatelessWidget {
                 fontSize: 40,
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Flutter Batch 4',
-                  style: TextStyle(color: Colors.lightBlue, fontSize: 30),
-                ),
-              ],
+            Text(
+              'Flutter Batch 4',
+              style: TextStyle(color: Colors.lightBlue, fontSize: 30),
             ),
           ],
         ),
