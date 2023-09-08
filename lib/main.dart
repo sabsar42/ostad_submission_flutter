@@ -22,68 +22,37 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        toolbarHeight: 100,
-        backgroundColor: Colors.green,
-        elevation: 70,
+        toolbarHeight: 75,
+        backgroundColor: Colors.blue,
         centerTitle: true,
         title: Text(
-          'Home',
-          style: TextStyle(
-              color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
+          'Profile',
+          style: TextStyle(color: Colors.white, fontSize: 25),
         ),
-        leading: Icon(
-          Icons.add_business,
-          color: Colors.white,
-          size: 28,
-        ),
-        actions: [
-          Container(   // used container widget to align the Search icon
-            margin: EdgeInsets.only(right: 20),
-            child: Icon(
-              Icons.search,
-              color: Colors.white,
-              size: 28,
-            ),
-          ),
-        ],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              'This is mod 5 assignment',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
+            Icon(
+              Icons.account_circle_rounded,
+              color: Colors.green,
+              size: 85,
             ),
-            SizedBox(height: 20),
+            Text(
+              'John Doe',
+              style: TextStyle(
+                color: Colors.green,
+                fontSize: 40,
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'My',
-                  style: TextStyle(color: Colors.redAccent, fontSize: 25),
-                ),
-                SizedBox(width: 5),
-                Text(
-                  'Phone',
-                  style: TextStyle(color: Colors.blueAccent, fontSize: 15),
-                ),
-                SizedBox(width: 5),
-                Text(
-                  'name',
-                  style: TextStyle(color: Colors.purpleAccent, fontSize: 20),
-                ),
-                SizedBox(width: 5),
-                Text(
-                  'Your Phone Name',
-                  style: TextStyle(
-                    color: Colors.orangeAccent,
-                    fontSize: 25,
-                  ),
+                  'Flutter Batch 4',
+                  style: TextStyle(color: Colors.lightBlue, fontSize: 30),
                 ),
               ],
             ),
