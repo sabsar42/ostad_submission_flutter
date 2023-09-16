@@ -9,10 +9,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        color: Colors.orange,
-        debugShowCheckedModeBanner: true,
-        home: HomeScreen());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: HomeScreen());
   }
 }
 
@@ -22,37 +19,47 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        toolbarHeight: 75,
+        toolbarHeight: 80,
         backgroundColor: Colors.blue,
         centerTitle: true,
         title: Text(
-          'Profile',
+          'My Shopping List',
           style: TextStyle(color: Colors.white, fontSize: 25),
         ),
+        actions: [
+          Container(
+            margin: EdgeInsets.only(right: 20),
+            child: Icon(
+              Icons.shopping_cart,
+              color: Colors.white,
+              size: 28,
+            ),
+          ),
+        ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.account_circle_rounded,
-              color: Colors.green,
-              size: 85,
-            ),
-            Text(
-              'John Doe',
-              style: TextStyle(
-                color: Colors.green,
-                fontSize: 40,
-              ),
-            ),
-            Text(
-              'Flutter Batch 4',
-              style: TextStyle(color: Colors.lightBlue, fontSize: 30),
-            ),
-          ],
-        ),
+      body: ListView(
+        children: [
+          ListTile(
+            title: Text('Apples'),
+            leading: Icon(Icons.shopping_basket),
+          ),
+          ListTile(
+            title: Text('Bananas'),
+            leading: Icon(Icons.shopping_basket),
+          ),
+          ListTile(
+            title: Text('Bread'),
+            leading: Icon(Icons.shopping_basket),
+          ),
+          ListTile(
+            title: Text('Milk'),
+            leading: Icon(Icons.shopping_basket),
+          ),
+          ListTile(
+            title: Text('Eggs'),
+            leading: Icon(Icons.shopping_basket),
+          ),
+        ],
       ),
     );
   }
