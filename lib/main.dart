@@ -5,11 +5,14 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: HomeScreen());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomeScreen(),
+    );
   }
 }
 
@@ -27,110 +30,137 @@ class HomeScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white, fontSize: 25),
         ),
       ),
-      body: Scrollbar(
-
-        child: Column(children: [
-          Padding(
-            padding: EdgeInsets.fromLTRB(1, 20, 20, 10),
-            child: Text(
-              "Welcome To My Photo Gallery!",
-              style: TextStyle(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(10, 20, 20, 10),
+              child: Text(
+                "Welcome To My Photo Gallery!",
+                style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
-                  fontSize: 25),
+                  fontSize: 25,
+                ),
+              ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(16.0),
-            child: TextField(
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: TextField(
                 decoration: InputDecoration(
-                    hintText: 'Search for Photos',
-                    border: OutlineInputBorder())),
-          ),
-
-
-
-          GridView.builder(
-            shrinkWrap: true,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              mainAxisSpacing: 5.0,
-              crossAxisSpacing: 5.0,
+                  hintText: 'Search for Photos',
+                  border: OutlineInputBorder(),
+                ),
+              ),
             ),
-            itemCount: 6,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  final snackBar = SnackBar(
-                    content: Text('Image ${index + 1} clicked!'),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                },
-                child: Column(
-                  children: [
-                    Image.network(
-                      'http://thecatapi.com/api/images/get?format=src${index + 1}',
-                      width: 100,
-                      height: 100,
-                    ),
-                    SizedBox(height: 5),
-                    Text('Caption ${index + 1}'),
-                  ],
-                ),
-              );
-            },
-          ),
+            GridView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                mainAxisSpacing: 1,
+                crossAxisSpacing: 1,
+              ),
+              itemCount: 6,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    final snackBar = SnackBar(
+                      content: Text('Photo ${index} clicked!'),
+                      backgroundColor: Colors.green,
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  },
+                  child: Column(
+                    children: [
+                      Image.network(
+                        'https://thecatapi.com/api/images/get?format=src&type=${index + 1}',
+                        width: 100,
+                        height: 90,
+                          fit: BoxFit.cover,
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        'Photo ${index}',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+            ListView(
 
-
-          Expanded(
-            child: ListView(
-              padding: const EdgeInsets.fromLTRB(25, 10, 25, 10),
+              shrinkWrap: true,
+              padding: const EdgeInsets.fromLTRB(0, 1, 5, 10),
               children: [
+
                 ListTile(
+
                   title: Text('Photo 1'),
-                  subtitle: Text('Photo 1'),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'http://thecatapi.com/api/images/get?format=src'),
+                  subtitle: Text('Description of photo 1'),
+                  leading: Container(
+                    width: 100,
+                    height: 100,
+                    child: CircleAvatar(
+                      radius: 50,
+                      backgroundImage: NetworkImage(
+                          'https://thecatapi.com/api/images/get?format=src&type=jpeg',
+                      ),
+                    ),
                   ),
                 ),
                 ListTile(
-                  title: Text('Photo 1'),
-                  subtitle: Text('Photo 1'),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'http://thecatapi.com/api/images/get?format=src'),
+                  title: Text('Photo 2'),
+                  subtitle: Text('Description of photo 2'),
+                  leading: Container(
+                    width: 100,
+                    height: 100,
+                    child: CircleAvatar(
+                      radius: 50,
+                      backgroundImage: NetworkImage(
+                        'http://thecatapi.com/api/images/get?format=src&type=jpg',
+                      ),
+                    ),
                   ),
                 ),
                 ListTile(
-                  title: Text('Photo 1'),
-                  subtitle: Text('Photo 1'),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'http://thecatapi.com/api/images/get?format=src'),
+                  title: Text('Photo 3'),
+                  subtitle: Text('Description of photo 3'),
+                  leading: Container(
+                    width: 100,
+                    height: 100,
+                    child: CircleAvatar(
+                      radius: 50,
+                      backgroundImage: NetworkImage(
+                        'http://thecatapi.com/api/images/get?format=src&type=img',
+                      ),
+                    ),
                   ),
                 ),
               ],
             ),
-          )
-
-          Container(
-            child: ElevatedButton(
-              onPressed: () {
-                final snackBar = SnackBar(
-                  content: Text('Image clicked!'),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              },
-              child: Icon(Icons.favorite), // Use a valid Flutter icon here
+            Container(
+              padding: const EdgeInsets.fromLTRB(10, 10, 10, 30),
+              child: ElevatedButton(
+                onPressed: () {
+                  final snackBar = SnackBar(
+                    content: Text('Photos Uploaded Successfully!'),
+                    backgroundColor: Colors.amber,
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: CircleBorder(),
+                  padding: EdgeInsets.all(20),
+                ),
+                child: Icon(Icons.upload,
+                    size: 35), // Use a valid Flutter icon here
+              ),
             ),
-          )
-
-
-
-
-        ]
-
+          ],
         ),
       ),
     );
