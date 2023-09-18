@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
       home: HomeScreen(),
     );
   }
@@ -22,19 +22,19 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        toolbarHeight: 70,
+        toolbarHeight: 60,
         backgroundColor: Colors.blue,
         centerTitle: true,
         title: const Text(
           'Photo Gallery',
-          style: TextStyle(color: Colors.white, fontSize: 25),
+          style: TextStyle(color: Colors.white, fontSize: 22),
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(10, 20, 20, 10),
+              padding: EdgeInsets.fromLTRB(10, 20, 30, 10),
               child: Text(
                 "Welcome To My Photo Gallery!",
                 style: TextStyle(
@@ -44,11 +44,11 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(16.0),
               child: TextField(
                 decoration: InputDecoration(
-                  hintText: 'Search for Photos',
+                  hintText: 'Search for photos...',
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -58,8 +58,9 @@ class HomeScreen extends StatelessWidget {
               physics: NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
-                mainAxisSpacing: 1,
+                mainAxisSpacing: 3,
                 crossAxisSpacing: 1,
+
               ),
               itemCount: 6,
               itemBuilder: (context, index) {
@@ -77,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                         'https://thecatapi.com/api/images/get?format=src&type=${index + 1}',
                         width: 100,
                         height: 90,
-                          fit: BoxFit.cover,
+                        fit: BoxFit.cover,
                       ),
                       SizedBox(height: 5),
                       Text(
@@ -92,13 +93,10 @@ class HomeScreen extends StatelessWidget {
               },
             ),
             ListView(
-
               shrinkWrap: true,
               padding: const EdgeInsets.fromLTRB(0, 1, 5, 10),
               children: [
-
                 ListTile(
-
                   title: Text('Photo 1'),
                   subtitle: Text('Description of photo 1'),
                   leading: Container(
@@ -107,7 +105,7 @@ class HomeScreen extends StatelessWidget {
                     child: CircleAvatar(
                       radius: 50,
                       backgroundImage: NetworkImage(
-                          'https://thecatapi.com/api/images/get?format=src&type=jpeg',
+                        'https://thecatapi.com/api/images/get?format=src&type=jpeg',
                       ),
                     ),
                   ),
@@ -142,22 +140,24 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Container(
-              padding: const EdgeInsets.fromLTRB(10, 10, 10, 30),
-              child: ElevatedButton(
-                onPressed: () {
-                  final snackBar = SnackBar(
-                    content: Text('Photos Uploaded Successfully!'),
-                    backgroundColor: Colors.amber,
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                },
-                style: ElevatedButton.styleFrom(
-                  shape: CircleBorder(),
-                  padding: EdgeInsets.all(20),
+            Center(
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 180),
+                child: ElevatedButton(
+                  onPressed: () {
+                    final snackBar = SnackBar(
+                      content: Text('Photos Uploaded Successfully!'),
+                      backgroundColor: Colors.orange,
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: CircleBorder(),
+                    padding: EdgeInsets.all(20),
+                  ),
+                  child: Icon(Icons.upload,
+                      size: 35), // Use a valid Flutter icon here
                 ),
-                child: Icon(Icons.upload,
-                    size: 35), // Use a valid Flutter icon here
               ),
             ),
           ],
