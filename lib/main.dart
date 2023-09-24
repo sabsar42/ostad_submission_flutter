@@ -142,8 +142,9 @@ class HomeScreen extends StatelessWidget {
             ),
             Center(
               child: Container(
-                padding: const EdgeInsets.fromLTRB(10, 10, 10, 180),
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 150),
                 child: ElevatedButton(
+
                   onPressed: () {
                     final snackBar = SnackBar(
                       content: Text('Photos Uploaded Successfully!'),
@@ -151,10 +152,8 @@ class HomeScreen extends StatelessWidget {
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   },
-                  style: ElevatedButton.styleFrom(
-                    shape: CircleBorder(),
-                    padding: EdgeInsets.all(20),
-                  ),
+               
+
                   child: Icon(Icons.upload,
                       size: 35), // Use a valid Flutter icon here
                 ),
