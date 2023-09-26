@@ -33,7 +33,35 @@ class Item {
 class _CounterState extends State<CounterScreen> {
   List<Item> items = [
     Item('Product 1', '10.00', 0),
-    Item('Product 2', '15.00', 0)
+    Item('Product 2', '15.00', 0),
+    Item('Product 3', '20.00', 0),
+    Item('Product 4', '25.00', 0),
+    Item('Product 5', '30.00', 0),
+    Item('Product 6', '35.00', 0),
+    Item('Product 7', '40.00', 0),
+    Item('Product 8', '45.00', 0),
+    Item('Product 9', '50.00', 0),
+    Item('Product 10', '55.00', 0),
+    Item('Product 11', '60.00', 0),
+    Item('Product 12', '65.00', 0),
+    Item('Product 13', '70.00', 0),
+    Item('Product 14', '75.00', 0),
+    Item('Product 15', '80.00', 0),
+    Item('Product 16', '85.00', 0),
+    Item('Product 17', '90.00', 0),
+    Item('Product 18', '95.00', 0),
+    Item('Product 19', '100.00', 0),
+    Item('Product 20', '105.00', 0),
+    Item('Product 21', '110.00', 0),
+    Item('Product 22', '115.00', 0),
+    Item('Product 23', '120.00', 0),
+    Item('Product 24', '125.00', 0),
+    Item('Product 25', '130.00', 0),
+    Item('Product 26', '135.00', 0),
+    Item('Product 27', '140.00', 0),
+    Item('Product 28', '145.00', 0),
+    Item('Product 29', '150.00', 0),
+    Item('Product 30', '155.00', 0),
   ];
 
   var totalProduct = 0;
@@ -74,10 +102,12 @@ class _CounterState extends State<CounterScreen> {
         title: Text('Product List'),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ListView.builder(
+              //   padding: EdgeInsets.fromLTRB(10, 20, 30, 10),
+              shrinkWrap: true,
               itemCount: items.length,
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
@@ -89,21 +119,25 @@ class _CounterState extends State<CounterScreen> {
                       Column(
                         children: [
                           Text('Count: ${items[index].counter.toString()}'),
-                          // SizedBox(height: 3),
-                          ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                items[index].counter++;
-                                // int totalCounter = items.fold(0, (sum, item) => sum + item.counter);
-                                if (items[index].counter >= 5) {
-                                  _showAlertDialog(items[index].counter, index);
-                                }
-                              });
-                            },
-                            child: Row(
-                              children: [
-                                Text('Buy Now'),
-                              ],
+                          SizedBox(
+                            height: 30,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  items[index].counter++;
+                                   int totalCounter = items.fold(
+                                     0, (sum, item) => sum + item.counter);
+                                  if (items[index].counter >= 5) {
+                                    _showAlertDialog(
+                                        items[index].counter, index);
+                                  }
+                                });
+                              },
+                              child: Row(
+                                children: [
+                                  Text('Buy Now'),
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -113,21 +147,25 @@ class _CounterState extends State<CounterScreen> {
                 );
               },
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           checkCounterIncrease();
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return CartScreen(productCount: totalProduct);
-            totalProduct=0;
-          }));
-          totalProduct=0;
-        },
-        child: Icon(Icons.shopping_cart),
 
+          }));
+          //  totalProduct = 0;
+        },
+
+        child: Icon(Icons.shopping_cart),
       ),
+
+
+
+
     );
   }
 }
@@ -141,24 +179,29 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+
         title: Text('Cart'),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(
-              context,
-              MaterialPageRoute(
-                builder: (context) => CounterScreen(),
-              ),
-            );
-          },
-          icon: Icon(Icons.arrow_back_outlined),
-        ),
+        // leading: IconButton(
+        //   onPressed: () {
+        //
+        //     // Navigator.pop(
+        //     //   context,
+        //     //   MaterialPageRoute(
+        //     //     builder: (context) => CounterScreen(),
+        //     //   ),
+        //     // );
+        //
+        //   },
+        //   icon: Icon(Icons.arrow_back_outlined),
+        // ),
       ),
       body: Center(
         child: Text(
           'Total Products :   $productCount ',
+
           style: TextStyle(fontSize: 24),
         ),
+
       ),
     );
   }
