@@ -125,7 +125,7 @@ class _CounterState extends State<CounterScreen> {
                                   }
                                 });
                               },
-                              child: const Row(
+                              child: Row(
                                 children: [
                                   Text('Buy Now'),
                                 ],
