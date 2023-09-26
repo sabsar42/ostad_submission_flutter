@@ -64,22 +64,14 @@ class _CounterState extends State<CounterScreen> {
     Item('Product 30', '155.00', 0),
   ];
 
-  var totalProduct = 0;
-
-  void checkCounterIncrease() {
-    for (int i = 0; i < items.length; i++) {
-      if (items[i].counter > 0) {
-        totalProduct++;
-      }
-    }
-  }
+  Set<String> totalProductCounter = {};
 
   void _showAlertDialog(int totalCounter, int itemIndex) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Congratulations'),
+          title: Text('Congratulations !'),
           content: Text(
               'You brought ${items[itemIndex].counter} product of  ${items[itemIndex].productName} '),
           actions: <Widget>[
@@ -106,13 +98,12 @@ class _CounterState extends State<CounterScreen> {
         child: Column(
           children: [
             ListView.builder(
-              //   padding: EdgeInsets.fromLTRB(10, 20, 30, 10),
               shrinkWrap: true,
               itemCount: items.length,
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
                   title: Text(items[index].productName),
-                  subtitle: Text('Price: ${items[index].productPrice}'),
+                  subtitle: Text('${items[index].productPrice}'),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -120,20 +111,20 @@ class _CounterState extends State<CounterScreen> {
                         children: [
                           Text('Count: ${items[index].counter.toString()}'),
                           SizedBox(
-                            height: 30,
+                            height: 29,
                             child: ElevatedButton(
                               onPressed: () {
                                 setState(() {
                                   items[index].counter++;
-                                   int totalCounter = items.fold(
-                                     0, (sum, item) => sum + item.counter);
+                                  totalProductCounter
+                                      .add(items[index].productName);
                                   if (items[index].counter >= 5) {
                                     _showAlertDialog(
                                         items[index].counter, index);
                                   }
                                 });
                               },
-                              child: Row(
+                              child: const Row(
                                 children: [
                                   Text('Buy Now'),
                                 ],
@@ -152,20 +143,12 @@ class _CounterState extends State<CounterScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          checkCounterIncrease();
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return CartScreen(productCount: totalProduct);
-
+            return CartScreen(productCount: totalProductCounter.length);
           }));
-          //  totalProduct = 0;
         },
-
         child: Icon(Icons.shopping_cart),
       ),
-
-
-
-
     );
   }
 }
@@ -179,29 +162,14 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
         title: Text('Cart'),
-        // leading: IconButton(
-        //   onPressed: () {
-        //
-        //     // Navigator.pop(
-        //     //   context,
-        //     //   MaterialPageRoute(
-        //     //     builder: (context) => CounterScreen(),
-        //     //   ),
-        //     // );
-        //
-        //   },
-        //   icon: Icon(Icons.arrow_back_outlined),
-        // ),
+        centerTitle: true,
       ),
       body: Center(
         child: Text(
           'Total Products :   $productCount ',
-
           style: TextStyle(fontSize: 24),
         ),
-
       ),
     );
   }
