@@ -104,7 +104,7 @@ class _CounterState extends State<CounterScreen> {
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
                   title: Text(items[index].productName),
-                  subtitle: Text('${items[index].productPrice}'),
+                  subtitle: Text('\$${items[index].productPrice}'),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
