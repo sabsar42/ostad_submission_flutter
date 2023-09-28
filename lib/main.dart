@@ -1,177 +1,145 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CounterScreen(),
+      home: HomeScreen(),
     );
   }
 }
 
-class CounterScreen extends StatefulWidget {
-  const CounterScreen({Key? key}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => _CounterState();
-}
-
-class Item {
-  String productName;
-  String productPrice;
-  int counter = 0;
-
-  Item(this.productName, this.productPrice, this.counter);
-}
-
-class _CounterState extends State<CounterScreen> {
-  List<Item> items = [
-    Item('Product 1', '10.00', 0),
-    Item('Product 2', '15.00', 0),
-    Item('Product 3', '20.00', 0),
-    Item('Product 4', '25.00', 0),
-    Item('Product 5', '30.00', 0),
-    Item('Product 6', '35.00', 0),
-    Item('Product 7', '40.00', 0),
-    Item('Product 8', '45.00', 0),
-    Item('Product 9', '50.00', 0),
-    Item('Product 10', '55.00', 0),
-    Item('Product 11', '60.00', 0),
-    Item('Product 12', '65.00', 0),
-    Item('Product 13', '70.00', 0),
-    Item('Product 14', '75.00', 0),
-    Item('Product 15', '80.00', 0),
-    Item('Product 16', '85.00', 0),
-    Item('Product 17', '90.00', 0),
-    Item('Product 18', '95.00', 0),
-    Item('Product 19', '100.00', 0),
-    Item('Product 20', '105.00', 0),
-    Item('Product 21', '110.00', 0),
-    Item('Product 22', '115.00', 0),
-    Item('Product 23', '120.00', 0),
-    Item('Product 24', '125.00', 0),
-    Item('Product 25', '130.00', 0),
-    Item('Product 26', '135.00', 0),
-    Item('Product 27', '140.00', 0),
-    Item('Product 28', '145.00', 0),
-    Item('Product 29', '150.00', 0),
-    Item('Product 30', '155.00', 0),
-  ];
-
-  Set<String> totalProductCounter = {};
-
-  void _showAlertDialog(int totalCounter, int itemIndex) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Congratulations !'),
-          content: Text(
-              'You brought ${items[itemIndex].counter} product of  ${items[itemIndex].productName} '),
-          actions: <Widget>[
-            TextButton(
-              child: Text('Close'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Product List'),
-        centerTitle: true,
+        title: Text('Orientation Demo'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: items.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  title: Text(items[index].productName),
-                  subtitle: Text('\$${items[index].productPrice}'),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Column(
-                        children: [
-                          Text('Count: ${items[index].counter.toString()}'),
-                          SizedBox(
-                            height: 29,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  items[index].counter++;
-                                  totalProductCounter
-                                      .add(items[index].productName);
-                                  if (items[index].counter >= 5) {
-                                    _showAlertDialog(
-                                        items[index].counter, index);
-                                  }
-                                });
-                              },
-                              child: Row(
-                                children: [
-                                  Text('Buy Now'),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return CartScreen(productCount: totalProductCounter.length);
-          }));
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return OrientationBuilder(
+            builder: (context, orientation) {
+              if (orientation == Orientation.portrait) {
+                return _buildPortraitLayout();
+              } else {
+                return _buildLandscapeLayout();
+              }
+            },
+          );
         },
-        child: Icon(Icons.shopping_cart),
       ),
     );
   }
-}
 
-class CartScreen extends StatelessWidget {
-  final int productCount;
-
-  const CartScreen({super.key, required this.productCount});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Cart'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          'Total Products :   $productCount ',
-          style: TextStyle(fontSize: 24),
+  Widget _buildPortraitLayout() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
+          child: CircleAvatar(
+            radius: 80,
+            backgroundImage: NetworkImage(
+              'https://media.istockphoto.com/id/186985453/photo/old-folding-camera.webp?s=170667a&w=0&k=20&c=E87gjPz6vFNEpvxWJ_lWRycPPc8qaR_5WD-DzPEcH4E=',
+            ),
+          ),
         ),
-      ),
+        GridView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            mainAxisSpacing: 3,
+            crossAxisSpacing: 1,
+          ),
+          itemCount: 6,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () {
+                // Handle onTap action
+              },
+              child: Column(
+                children: [
+                  Image.network(
+                    'https://media.istockphoto.com/id/186985453/photo/old-folding-camera.webp?s=170667a&w=0&k=20&c=E87gjPz6vFNEpvxWJ_lWRycPPc8qaR_5WD-DzPEcH4E=',
+                    width: 100,
+                    height: 90,
+                    fit: BoxFit.cover,
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    'Photo ${index}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLandscapeLayout() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
+          child: CircleAvatar(
+            radius: 80,
+            backgroundImage: NetworkImage(
+              'https://media.istockphoto.com/id/186985453/photo/old-folding-camera.webp?s=170667a&w=0&k=20&c=E87gjPz6vFNEpvxWJ_lWRycPPc8qaR_5WD-DzPEcH4E=',
+            ),
+          ),
+        ),
+        GridView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            mainAxisSpacing: 3,
+            crossAxisSpacing: 1,
+          ),
+          itemCount: 6,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () {
+                // Handle onTap action
+              },
+              child: Column(
+                children: [
+                  Image.network(
+                    'https://media.istockphoto.com/id/186985453/photo/old-folding-camera.webp?s=170667a&w=0&k=20&c=E87gjPz6vFNEpvxWJ_lWRycPPc8qaR_5WD-DzPEcH4E=',
+                    width: 100,
+                    height: 90,
+                    fit: BoxFit.cover,
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    'Photo ${index}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 }
