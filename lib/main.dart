@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Orientation Demo'),
+        title: Text('News Feed'),
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
@@ -39,107 +39,52 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPortraitLayout() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
-          child: CircleAvatar(
-            radius: 80,
-            backgroundImage: NetworkImage(
-              'https://media.istockphoto.com/id/186985453/photo/old-folding-camera.webp?s=170667a&w=0&k=20&c=E87gjPz6vFNEpvxWJ_lWRycPPc8qaR_5WD-DzPEcH4E=',
-            ),
+  Widget _buildLandscapeLayout() {
+    return GridView.builder(
+      // shrinkWrap: true,
+      //physics: NeverScrollableScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 3,
+        crossAxisSpacing: 1,
+      ),
+      itemCount: 10,
+      itemBuilder: (context, index) {
+        return Card(
+          child: Image.network(
+            'https://images.unsplash.com/photo-1555652736-e92021d28a10?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
+            width: 150,
+            height: 150,
           ),
-        ),
-        GridView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            mainAxisSpacing: 3,
-            crossAxisSpacing: 1,
-          ),
-          itemCount: 6,
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () {
-                // Handle onTap action
-              },
-              child: Column(
-                children: [
-                  Image.network(
-                    'https://media.istockphoto.com/id/186985453/photo/old-folding-camera.webp?s=170667a&w=0&k=20&c=E87gjPz6vFNEpvxWJ_lWRycPPc8qaR_5WD-DzPEcH4E=',
-                    width: 100,
-                    height: 90,
-                    fit: BoxFit.cover,
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    'Photo ${index}',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
-        ),
-      ],
+        );
+      },
     );
   }
 
-  Widget _buildLandscapeLayout() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
-          child: CircleAvatar(
-            radius: 80,
-            backgroundImage: NetworkImage(
-              'https://media.istockphoto.com/id/186985453/photo/old-folding-camera.webp?s=170667a&w=0&k=20&c=E87gjPz6vFNEpvxWJ_lWRycPPc8qaR_5WD-DzPEcH4E=',
-            ),
-          ),
-        ),
-        GridView.builder(
+  Widget _buildPortraitLayout() {
+    return ListView.builder(
+      itemCount: 1,
+      itemBuilder: (context, index) {
+        return GridView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
+            crossAxisCount: 1,
             mainAxisSpacing: 3,
             crossAxisSpacing: 1,
           ),
-          itemCount: 6,
+          itemCount: 10,
           itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () {
-                // Handle onTap action
-              },
-              child: Column(
-                children: [
-                  Image.network(
-                    'https://media.istockphoto.com/id/186985453/photo/old-folding-camera.webp?s=170667a&w=0&k=20&c=E87gjPz6vFNEpvxWJ_lWRycPPc8qaR_5WD-DzPEcH4E=',
-                    width: 100,
-                    height: 90,
-                    fit: BoxFit.cover,
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    'Photo ${index}',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
+            return Card(
+              child: Image.network(
+                'https://images.unsplash.com/photo-1555652736-e92021d28a10?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
+                width: 150,
+                height: 150,
               ),
             );
           },
-        ),
-      ],
+        );
+      },
     );
   }
 }
