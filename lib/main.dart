@@ -56,7 +56,7 @@ class HomeScreen extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 200,
                   backgroundImage: NetworkImage(
-                    'https://media.istockphoto.com/id/186985453/photo/old-folding-camera.webp?s=170667a&w=0&k=20&c=E87gjPz6vFNEpvxWJ_lWRycPPc8qaR_5WD-DzPEcH4E=',
+                    'https://images.unsplash.com/photo-1594470760093-c02cf339ad45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
                   ),
                 ),
               ),
@@ -69,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Container(
                       child: Text(
-                        'Jhone Doe',
+                        'Jhon Doe',
                         style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
@@ -109,13 +109,13 @@ class HomeScreen extends StatelessWidget {
                                   mainAxisSpacing: 3,
                                   crossAxisSpacing: 1,
                                 ),
-                                itemCount: 10,
+                                itemCount: 12,
                                 itemBuilder: (context, index) {
                                   return Card(
                                     child: Image.network(
-                                      'https://images.unsplash.com/photo-1555652736-e92021d28a10?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
+                                      'https://images.unsplash.com/photo-1607462109225-6b64ae2dd3cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
                                       width: 150,
-                                      height: 150,
+                                      height: 100,
                                     ),
                                   );
                                 },
@@ -151,7 +151,7 @@ class HomeScreen extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 200,
                   backgroundImage: NetworkImage(
-                    'https://media.istockphoto.com/id/186985453/photo/old-folding-camera.webp?s=170667a&w=0&k=20&c=E87gjPz6vFNEpvxWJ_lWRycPPc8qaR_5WD-DzPEcH4E=',
+                    'https://images.unsplash.com/photo-1594470760093-c02cf339ad45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
                   ),
                 ),
               ),
@@ -161,7 +161,7 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   Container(
                     child: Text(
-                      'Jhone Doe',
+                      'Jhon Doe',
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
@@ -201,13 +201,13 @@ class HomeScreen extends StatelessWidget {
                                 mainAxisSpacing: 3,
                                 crossAxisSpacing: 1,
                               ),
-                              itemCount: 10,
+                              itemCount: 12,
                               itemBuilder: (context, index) {
                                 return Card(
                                   child: Image.network(
-                                    'https://images.unsplash.com/photo-1555652736-e92021d28a10?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
+                                    'https://images.unsplash.com/photo-1607462109225-6b64ae2dd3cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
                                     width: 150,
-                                    height: 150,
+                                    height: 100,
                                   ),
                                 );
                               },
