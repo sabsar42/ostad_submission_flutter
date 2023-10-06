@@ -5,86 +5,176 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        color: Colors.orange,
-        debugShowCheckedModeBanner: false,
-        home: HomeScreen());
+      debugShowCheckedModeBanner: false,
+      home: ColorChangeScreen(),
+    );
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class ColorChangeScreen extends StatefulWidget {
+  @override
+  _ColorChangeScreenState createState() => _ColorChangeScreenState();
+}
+
+class _ColorChangeScreenState extends State<ColorChangeScreen> {
+  String choose = '';
+
+  void changeColor(String size) {
+    setState(() {
+      choose = size;
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Selected Size: $size'),
+      ),
+    );
+  }
+
+  Color getButtonColor(String size) {
+    if (choose == size) {
+      return Colors.orange;
+    } else
+      return Colors.grey;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        toolbarHeight: 100,
-        backgroundColor: Colors.green,
-        elevation: 70,
-        centerTitle: true,
-        title: Text(
-          'Home',
-          style: TextStyle(
-              color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
-        ),
-        leading: Icon(
-          Icons.add_business,
-          color: Colors.white,
-          size: 32,
-        ),
-        actions: [
-          Positioned(
-            left: 50, // Adjust the position as needed
-            child: Icon(
-              Icons.search,
-              color: Colors.white,
-            ),
-          ),
-        ],
+        title: Text('Size Selector'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: ButtonBar(
+          alignment: MainAxisAlignment.center,
+          buttonMinWidth: 200.0,
+          buttonHeight: 60.0,
           children: [
-            Text(
-              'This is mod 5 assignment',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'My',
-                  style: TextStyle(color: Colors.redAccent, fontSize: 25),
+            ElevatedButton(
+              onPressed: () {
+                changeColor('S');
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: getButtonColor('S'), // Use getButtonColor
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
-                SizedBox(width: 5),
-                Text(
-                  'Phone',
-                  style: TextStyle(color: Colors.blueAccent, fontSize: 15),
-                ),
-                SizedBox(width: 5),
-                Text(
-                  'name',
-                  style: TextStyle(color: Colors.purpleAccent, fontSize: 20),
-                ),
-                SizedBox(width: 5),
-                Text(
-                  'Your Phone Name',
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Text(
+                  'S',
                   style: TextStyle(
-                    color: Colors.orangeAccent,
-                    fontSize: 25,
+                    color: Colors.white,
                   ),
                 ),
-              ],
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                changeColor('M');
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: getButtonColor('M'), // Use getButtonColor
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Text(
+                  'M',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                changeColor('L');
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: getButtonColor('L'), // Use getButtonColor
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Text(
+                  'L',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                changeColor('XL');
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: getButtonColor('XL'),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Text(
+                  'XL',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                changeColor('XXL');
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: getButtonColor('XXL'),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Text(
+                  'XXL',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+
+            ElevatedButton(
+              onPressed: () {
+                changeColor('XXXL');
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: getButtonColor('XXXL'),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Text(
+                  'XXXL',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
