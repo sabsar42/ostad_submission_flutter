@@ -60,7 +60,7 @@ class _ColorChangeScreenState extends State<ColorChangeScreen> {
                 changeColor('S');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: getButtonColor('S'), // Use getButtonColor
+                backgroundColor: getButtonColor('S'),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
@@ -80,7 +80,7 @@ class _ColorChangeScreenState extends State<ColorChangeScreen> {
                 changeColor('M');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: getButtonColor('M'), // Use getButtonColor
+                backgroundColor: getButtonColor('M'),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
@@ -100,7 +100,7 @@ class _ColorChangeScreenState extends State<ColorChangeScreen> {
                 changeColor('L');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: getButtonColor('L'), // Use getButtonColor
+                backgroundColor: getButtonColor('L'),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
@@ -155,7 +155,6 @@ class _ColorChangeScreenState extends State<ColorChangeScreen> {
                 ),
               ),
             ),
-
             ElevatedButton(
               onPressed: () {
                 changeColor('XXXL');
