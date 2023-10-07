@@ -71,8 +71,6 @@ class _CartScreenState extends State<CartScreen> {
           ),
         ],
       ),
-
-
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,11 +91,6 @@ class _CartScreenState extends State<CartScreen> {
               ],
             ),
           ),
-
-
-
-
-
           Expanded(
             child: Stack(
               children: [
@@ -431,7 +424,6 @@ class _CartScreenState extends State<CartScreen> {
               ],
             ),
           ),
-
           Expanded(
             child: Stack(
               children: [
@@ -598,7 +590,6 @@ class _CartScreenState extends State<CartScreen> {
               ],
             ),
           ),
-
           Column(
             children: [
               Align(
@@ -635,7 +626,7 @@ class _CartScreenState extends State<CartScreen> {
                   onPressed: () {
                     final snackBar = SnackBar(
                       content:
-                      Text('Congratulations! Your order has been placed.'),
+                          Text('Congratulations! Your order has been placed.'),
                       backgroundColor: Colors.green,
                       duration: Duration(seconds: 2),
                     );
@@ -665,3 +656,4 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 }
+
