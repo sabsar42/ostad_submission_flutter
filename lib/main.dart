@@ -62,8 +62,7 @@ class _CartScreenState extends State<CartScreen> {
         backgroundColor: Colors.transparent,
         actions: [
           Container(
-            padding: EdgeInsets.fromLTRB(10, 10, 20, 0),
-            // Adjust the padding as needed
+            padding: EdgeInsets.fromLTRB(10, 0, 20, 0),
             child: Icon(
               size: 30.0,
               Icons.search,
@@ -72,6 +71,8 @@ class _CartScreenState extends State<CartScreen> {
           ),
         ],
       ),
+
+
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,15 +85,19 @@ class _CartScreenState extends State<CartScreen> {
                   'My Bag',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 34,
+                    fontSize: 30,
                     fontFamily: 'Sans-Serif',
                     fontWeight: FontWeight.w700,
-                    height: 0,
                   ),
                 ),
               ],
             ),
           ),
+
+
+
+
+
           Expanded(
             child: Stack(
               children: [
@@ -107,9 +112,9 @@ class _CartScreenState extends State<CartScreen> {
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: NetworkImage(
-                            'https://images.unsplash.com/photo-1621388987673-c60d3b441d51?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGJsYWNrJTIwc2hpcnR8ZW58MHx8MHx8fDA%3D%3D&auto=format&fit=crop&w=900&q=60',
+                            'https://images.unsplash.com/photo-1574243091999-8840e2931fe8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
                           ),
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
@@ -259,7 +264,7 @@ class _CartScreenState extends State<CartScreen> {
               ],
             ),
           ),
-          //
+          SizedBox(height: 10),
           Expanded(
             child: Stack(
               children: [
@@ -274,9 +279,9 @@ class _CartScreenState extends State<CartScreen> {
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: NetworkImage(
-                            'https://images.unsplash.com/photo-1621388987673-c60d3b441d51?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGJsYWNrJTIwc2hpcnR8ZW58MHx8MHx8fDA%3D%3D&auto=format&fit=crop&w=900&q=60',
+                            'https://images.unsplash.com/photo-1630933111210-e54386445dd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80',
                           ),
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
@@ -295,7 +300,7 @@ class _CartScreenState extends State<CartScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Pullover',
+                            'T-Shirt',
                             style: TextStyle(
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
@@ -315,7 +320,7 @@ class _CartScreenState extends State<CartScreen> {
                                       ),
                                     ),
                                     TextSpan(
-                                      text: 'Black',
+                                      text: 'Yellow',
                                       style: TextStyle(
                                         fontSize: 12.0,
                                         color: Colors.black,
@@ -426,6 +431,174 @@ class _CartScreenState extends State<CartScreen> {
               ],
             ),
           ),
+
+          Expanded(
+            child: Stack(
+              children: [
+                Positioned(
+                  left: 0.0,
+                  top: 0.0,
+                  child: Card(
+                    elevation: 8.0,
+                    child: Container(
+                      height: 130,
+                      width: 150,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(
+                            'https://images.unsplash.com/photo-1594201658541-52380e1ca6df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE0fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=600&q=60',
+                          ),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 150.0,
+                  top: 0.0,
+                  right: 0.0,
+                  child: Card(
+                    elevation: 8.0,
+                    child: Container(
+                      height: 130,
+                      padding: EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Sport Dress',
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 5.0),
+                          Row(
+                            children: [
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'Color: ',
+                                      style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: 'Brown',
+                                      style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'Size: ',
+                                      style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: 'M',
+                                      style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                    right: 18.0,
+                    top: 10.0,
+                    child: Icon(Icons.more_vert, color: Colors.black45)),
+                Positioned(
+                  left: 70.0,
+                  top: 73.0,
+                  right: 0.0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            if (items[2].counter > 1) {
+                              items[2].counter--;
+                            }
+                            updateTotalAmount();
+                          });
+                        },
+                        style: ElevatedButton.styleFrom(
+                          elevation: 5.0,
+                          backgroundColor: Colors.white,
+                          shape: CircleBorder(),
+                          padding: EdgeInsets.all(12),
+                        ),
+                        child: Icon(Icons.remove,
+                            size: 23, color: Colors.black54), //
+                      ),
+                      SizedBox(width: 5),
+                      Text(
+                        items[2].counter.toString(),
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            items[2].counter++;
+                            updateTotalAmount();
+                          });
+                        },
+                        style: ElevatedButton.styleFrom(
+                          elevation: 5.0,
+                          backgroundColor: Colors.white,
+                          shape: CircleBorder(),
+                          padding: EdgeInsets.all(12),
+                        ),
+                        child: Icon(
+                          Icons.add,
+                          size: 23,
+                          color: Colors.black54,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Positioned(
+                  right: 20.0,
+                  top: 88.0,
+                  child: Text(
+                    "${items[2].productPrice.toString()}\$",
+                    style: TextStyle(
+                      fontSize: 19,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+
           Column(
             children: [
               Align(
@@ -459,7 +632,15 @@ class _CartScreenState extends State<CartScreen> {
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                 width: 550,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    final snackBar = SnackBar(
+                      content:
+                          Text('Congratulations! Your order has been placed.'),
+                      backgroundColor: Colors.green,
+                      duration: Duration(seconds: 2),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  },
                   style: TextButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
