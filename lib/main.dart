@@ -635,7 +635,7 @@ class _CartScreenState extends State<CartScreen> {
                   onPressed: () {
                     final snackBar = SnackBar(
                       content:
-                          Text('Congratulations! Your order has been placed.'),
+                      Text('Congratulations! Your order has been placed.'),
                       backgroundColor: Colors.green,
                       duration: Duration(seconds: 2),
                     );
