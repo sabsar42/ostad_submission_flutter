@@ -45,7 +45,7 @@ class _ColorChangeScreenState extends State<ColorChangeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Selection Builder '),
+        title: Text('Selection Screen '),
       ),
       body: ListView.builder(
         itemCount: items.length,
