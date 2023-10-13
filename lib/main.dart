@@ -1,94 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:ostad_submission_flutter/home_screen.dart';
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(const TodoApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class TodoApp extends StatelessWidget {
+  const TodoApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        color: Colors.orange,
-        debugShowCheckedModeBanner: false,
-        home: HomeScreen());
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        toolbarHeight: 100,
-        backgroundColor: Colors.green,
-        elevation: 70,
-        centerTitle: true,
-        title: Text(
-          'Home',
-          style: TextStyle(
-              color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
-        ),
-        leading: Icon(
-          Icons.add_business,
-          color: Colors.white,
-          size: 32,
-        ),
-        actions: [
-          Positioned(
-            left: 50, // Adjust the position as needed
-            child: Icon(
-              Icons.search,
-              color: Colors.white,
-            ),
-          ),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              'This is mod 5 assignment',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'My',
-                  style: TextStyle(color: Colors.redAccent, fontSize: 25),
-                ),
-                SizedBox(width: 5),
-                Text(
-                  'Phone',
-                  style: TextStyle(color: Colors.blueAccent, fontSize: 15),
-                ),
-                SizedBox(width: 5),
-                Text(
-                  'name',
-                  style: TextStyle(color: Colors.purpleAccent, fontSize: 20),
-                ),
-                SizedBox(width: 5),
-                Text(
-                  'Your Phone Name',
-                  style: TextStyle(
-                    color: Colors.orangeAccent,
-                    fontSize: 25,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
+    return const MaterialApp(
+      home: HomeScreen(),
     );
   }
 }
