@@ -30,7 +30,8 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController editTitleController = TextEditingController();
-  final TextEditingController editDescriptionController = TextEditingController();
+  final TextEditingController editDescriptionController =
+      TextEditingController();
 
   void _addTask() {
     String title = titleController.text;
@@ -63,33 +64,40 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
         return SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom),// Increased bottom padding
+                bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Column(
               children: <Widget>[
                 Container(
                   margin: EdgeInsets.all(5),
                   padding: const EdgeInsets.all(8.0),
-                  child: TextField(
+                  child: TextFormField(
                     controller: titleController,
                     decoration: InputDecoration(
                       labelText: 'Title',
                       hintText: "Add Title",
                       enabledBorder: OutlineInputBorder(),
-                      focusedBorder: OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
                     ),
+                    maxLines: null,
+                    // overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 Container(
                   margin: EdgeInsets.all(5),
                   padding: const EdgeInsets.all(8.0),
-                  child: TextField(
+                  child: TextFormField(
                     controller: descriptionController,
                     decoration: InputDecoration(
-                      labelText: 'Add Description',
+                      labelText: 'Description',
                       hintText: "Add Description",
                       enabledBorder: OutlineInputBorder(),
-                      focusedBorder: OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
                     ),
+                    maxLines: null,
                   ),
                 ),
                 ElevatedButton(
@@ -101,10 +109,11 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
                     });
                   },
                   style: ButtonStyle(
-                    padding: MaterialStateProperty.all(EdgeInsets.fromLTRB(30, 10, 30,10)), // Add padding here
+                    padding: MaterialStateProperty.all(
+                        EdgeInsets.fromLTRB(30, 10, 30, 10)),
                     backgroundColor: MaterialStateProperty.all(Colors.red),
                   ),
-                  child: Text('ADD'),
+                  child: Text('Edit Done'),
                 ),
               ],
             ),
@@ -118,82 +127,88 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         actions: [
           Container(
             padding: EdgeInsets.all(10),
             child: Icon(
               size: 30.0,
               Icons.search,
-              color: Colors.black,
+              color: Colors.blue,
             ),
           ),
         ],
       ),
       body: Column(
         children: [
-
           Container(
-            margin: EdgeInsets.all(5),
+            margin: EdgeInsets.all(2),
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               controller: titleController,
               decoration: InputDecoration(
-                labelText: 'Title',
+                labelText: ' Title',
                 hintText: "Add Title",
                 enabledBorder: OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
               ),
+              maxLines: null,
             ),
           ),
           Container(
-            margin: EdgeInsets.all(5),
+            margin: EdgeInsets.all(2),
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               controller: descriptionController,
               decoration: InputDecoration(
-                labelText: 'Add Description',
+                labelText: ' Description',
                 hintText: 'Add Description',
                 enabledBorder: OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
               ),
+              maxLines: null,
             ),
           ),
           ElevatedButton(
-
             onPressed: _addTask,
             child: Text(
               'ADD',
-              style: TextStyle(fontSize: 20.0), // Increase the font size to make it bigger
+              style: TextStyle(fontSize: 16.0),
             ),
-            style: ButtonStyle(
-              padding: MaterialStateProperty.all(EdgeInsets.fromLTRB(30, 10, 30,10)), // Add padding here
-              backgroundColor: MaterialStateProperty.all(Colors.red),
+            style: ElevatedButton.styleFrom(
+              elevation: 5.0,
+              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+              backgroundColor: Colors.red,
             ),
           ),
-
-
+          SizedBox(height: 20),
           Expanded(
             child: ListView.separated(
               itemCount: toDoList.length,
               itemBuilder: (context, index) {
                 return ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.red,
+                  ),
                   title: Text(toDoList[index].title),
                   subtitle: Text(toDoList[index].description),
                   trailing: Icon(Icons.arrow_forward),
+                  tileColor: Colors.grey[300],
                   onLongPress: () {
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-
-                          title: Text("Edit or Delete?"),
+                          title: Text("Alert"),
                           actions: <Widget>[
                             TextButton(
-                              onPressed: () { Navigator.of(context).pop();
-                                _editTask(context,index);
-
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                                _editTask(context, index);
                               },
                               child: Text("Edit"),
                             ),
@@ -210,13 +225,12 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
                     );
                   },
                 );
-              }, separatorBuilder: (BuildContext context, int index) {
-              return Container(
-                height: 2.0, // Adjust the height as needed
-                color: Colors.grey, // Set the color of the divider
-                margin: EdgeInsets.symmetric(horizontal: 16.0), // Add some margin
-              );
-            },
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return Divider(
+                  height: 3.0,
+                );
+              },
             ),
           ),
         ],
