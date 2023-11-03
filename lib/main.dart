@@ -1,4 +1,4 @@
-import 'package:ostad_submission_flutter/screens/product_list_screen.dart';
+import 'package:ostad_submission_flutter/screens/weather_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,8 +10,8 @@ class CrudApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: ProductListScreen(),
+    return  MaterialApp(
+      home: WeatherScreen(),
     );
   }
 }
