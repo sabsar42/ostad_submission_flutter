@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
+import 'package:ostad_submission_flutter/screens/photo_detail_screen.dart';
 import '../widget/photo_item.dart';
 
 class PhotoListScreen extends StatefulWidget {
-  const PhotoListScreen({super.key});
+  const PhotoListScreen({Key? key});
 
   @override
   State<PhotoListScreen> createState() => _PhotoListScreenState();
@@ -15,31 +16,33 @@ class _PhotoListScreenState extends State<PhotoListScreen> {
 
   @override
   void initState() {
-    getphotoList();
     super.initState();
+    getPhotoList();
   }
 
-  void getphotoList() async {
-    //photoList.clear();
-    setState(() {});
-
-    Response response = await get(
+  Future<void> getPhotoList() async {
+    final response = await http.get(
       Uri.parse('https://jsonplaceholder.typicode.com/photos'),
     );
 
     if (response.statusCode == 200) {
       List<dynamic> data = json.decode(response.body);
+      List<Photo> PhotoList = [];
+
       for (var photoData in data) {
         String id = photoData['id'].toString();
         String title = photoData['title'];
         String thumbnailUrl = photoData['thumbnailUrl'];
 
         Photo photo = Photo(title, thumbnailUrl, id);
-        photoList.add(photo);
+        PhotoList.add(photo);
       }
+      setState(() {
+        photoList = PhotoList;
+      });
+    } else {
+      throw Exception('Error Loading Photos');
     }
-
-    setState(() {});
   }
 
   @override
