@@ -11,16 +11,16 @@ class PhotoListScreen extends StatefulWidget {
 }
 
 class _PhotoListScreenState extends State<PhotoListScreen> {
-  List<Product> productList = [];
+  List<Photo> photoList = [];
 
   @override
   void initState() {
-    getProductList();
+    getphotoList();
     super.initState();
   }
 
-  void getProductList() async {
-    //productList.clear();
+  void getphotoList() async {
+    //photoList.clear();
     setState(() {});
 
     Response response = await get(
@@ -29,14 +29,13 @@ class _PhotoListScreenState extends State<PhotoListScreen> {
 
     if (response.statusCode == 200) {
       List<dynamic> data = json.decode(response.body);
-      for (var productData in data) {
+      for (var photoData in data) {
+        String id = photoData['id'].toString();
+        String title = photoData['title'];
+        String thumbnailUrl = photoData['thumbnailUrl'];
 
-        String id = productData['id'].toString();
-        String title = productData['title'];
-        String thumbnailUrl = productData['thumbnailUrl'];
-
-        Product product = Product(title, thumbnailUrl, id);
-        productList.add(product);
+        Photo photo = Photo(title, thumbnailUrl, id);
+        photoList.add(photo);
       }
     }
 
@@ -50,10 +49,10 @@ class _PhotoListScreenState extends State<PhotoListScreen> {
         title: const Text('Photo Gallery App'),
       ),
       body: ListView.builder(
-        itemCount: productList.length,
+        itemCount: photoList.length,
         itemBuilder: (context, index) {
           return PhotoItem(
-            product: productList[index],
+            photo: photoList[index],
           );
         },
       ),
@@ -61,12 +60,12 @@ class _PhotoListScreenState extends State<PhotoListScreen> {
   }
 }
 
-class Product {
+class Photo {
   final String title;
   final String thumbnailUrl;
   final String id;
 
-  Product(
+  Photo(
     this.title,
     this.thumbnailUrl,
     this.id,

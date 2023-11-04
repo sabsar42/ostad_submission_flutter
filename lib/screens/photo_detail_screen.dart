@@ -5,9 +5,9 @@ import 'package:ostad_submission_flutter/screens/photo_list_screen.dart';
 import '../widget/photo_item.dart';
 
 class PhotoDetailScreen extends StatelessWidget {
-  const PhotoDetailScreen({super.key, required this.product});
+  const PhotoDetailScreen({super.key, required this.photo});
 
-  final Product product;
+  final Photo photo;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class PhotoDetailScreen extends StatelessWidget {
               width: double.infinity,
               height: 200,
               child: Image.network(
-                product.thumbnailUrl,
+                photo.thumbnailUrl,
                 fit: BoxFit.contain,
               ),
             ),
@@ -35,13 +35,13 @@ class PhotoDetailScreen extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'Title : ${product.title}',
+                  'Title : ${photo.title}',
                   style: TextStyle(
                     fontSize: 20,
                   ),
                 ),
                 Text(
-                  'ID : ${product.id}',
+                  'ID : ${photo.id}',
                   style: TextStyle(
                     fontSize: 20,
                   ),
@@ -49,7 +49,6 @@ class PhotoDetailScreen extends StatelessWidget {
               ],
             ),
           ),
-
         ],
       ),
     );

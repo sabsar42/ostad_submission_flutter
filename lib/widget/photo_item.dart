@@ -3,31 +3,29 @@ import '../screens/photo_detail_screen.dart';
 import '../screens/photo_list_screen.dart';
 
 class PhotoItem extends StatelessWidget {
-  const PhotoItem({super.key, required this.product});
+  const PhotoItem({super.key, required this.photo});
 
-  final Product product;
+  final Photo photo;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(8), // Adjust the padding as needed
+      padding: EdgeInsets.all(8),
       child: ListTile(
         onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => PhotoDetailScreen(product: product),
+              builder: (context) => PhotoDetailScreen(photo: photo),
             ),
           );
         },
-
         leading: Image.network(
-          product.thumbnailUrl,
+          photo.thumbnailUrl,
           width: 80,
         ),
-        title: Text(product.title),
+        title: Text(photo.title),
       ),
     );
   }
-
 }
