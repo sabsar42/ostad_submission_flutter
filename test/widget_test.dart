@@ -1,30 +1,91 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-
-import 'package:ostad_submission_flutter/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const TodoApp());
+  runApp(MyApp());
+}
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+class ToDo {
+  String title;
+  String description;
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  ToDo(this.title, this.description);
+}
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
-  });
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: ToDoListScreen(),
+    );
+  }
+}
+
+class ToDoListScreen extends StatefulWidget {
+  @override
+  _ToDoListScreenState createState() => _ToDoListScreenState();
+}
+
+class _ToDoListScreenState extends State<ToDoListScreen> {
+  List<ToDo> toDoList = [];
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+
+  void _addTask() {
+    String title = titleController.text;
+    String description = descriptionController.text;
+
+    if (title.isNotEmpty && description.isNotEmpty) {
+      setState(() {
+        toDoList.add(ToDo(title, description));
+        titleController.clear();
+        descriptionController.clear();
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("To-Do List"),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextField(
+              controller: titleController,
+              decoration: InputDecoration(
+                labelText: 'Title',
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextField(
+              controller: descriptionController,
+              decoration: InputDecoration(
+                labelText: 'Description',
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: _addTask,
+            child: Text('ADD'),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: toDoList.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(toDoList[index].title),
+                  subtitle: Text(toDoList[index].description),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
