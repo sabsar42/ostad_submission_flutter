@@ -1,9 +1,8 @@
 # ostad_submission_flutter
 
-Ostad Module 6 assignment - A photo Gallery
+Ostad Submission for Flutter
 
-The 3 Screenshots are attached here, showing the Scrollview.
+This is the image of the First Page
+
 
 ![img.png](img.png)
-![img_3.png](img_3.png)
-![img_1.png](img_1.png)
