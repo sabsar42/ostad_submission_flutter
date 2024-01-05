@@ -1,18 +1,17 @@
+import 'package:ostad_submission_flutter/screens/photo_list_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:ostad_submission_flutter/home_screen.dart';
-
 
 void main() {
-  runApp(const TodoApp());
+  runApp(const CrudApp());
 }
 
-class TodoApp extends StatelessWidget {
-  const TodoApp({super.key});
+class CrudApp extends StatelessWidget {
+  const CrudApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HomeScreen(),
+      home: PhotoListScreen(),
     );
   }
 }
