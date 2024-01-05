@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         color: Colors.orange,
-        debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: true,
         home: HomeScreen());
   }
 }
@@ -34,14 +34,15 @@ class HomeScreen extends StatelessWidget {
         leading: Icon(
           Icons.add_business,
           color: Colors.white,
-          size: 32,
+          size: 28,
         ),
         actions: [
-          Positioned(
-            left: 50, // Adjust the position as needed
+          Container(   // used container widget to align the Search icon
+            margin: EdgeInsets.only(right: 20),
             child: Icon(
               Icons.search,
               color: Colors.white,
+              size: 28,
             ),
           ),
         ],
